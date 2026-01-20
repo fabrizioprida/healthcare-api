@@ -27,7 +27,7 @@ class StoreClinicRequest extends FormRequest
                 'string',
                 'min:4',
                 'max:80',
-                Rule::unique(Clinic::class, 'name')
+                Rule::unique(Clinic::class, 'name'),
             ],
             self::ADDRESS => ['required', 'string', 'min:4', 'max:255'],
         ];
