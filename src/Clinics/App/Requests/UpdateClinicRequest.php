@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Lightit\Clinics\App\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Lightit\Clinics\Domain\DataTransferObjects\ClinicDto;
+use Lightit\Clinics\Domain\Models\Clinic;
+
+class UpdateClinicRequest extends FormRequest
+{
+    public const string NAME = 'name';
+
+    public const string ADDRESS = 'address';
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function rules(): array
+    {
+        $clinicId = $this->route('clinic');
+
+        return [
+            self::NAME => [
+                'required',
+                'string',
+                'min:4',
+                'max:80',
+                Rule::unique(Clinic::class, 'name')->ignore($clinicId),
+            ],
+            self::ADDRESS => ['required', 'string', 'min:4', 'max:255'],
+        ];
+    }
+
+    public function toDto(): ClinicDto
+    {
+        return new ClinicDto(
+            name: Str::title($this->string(self::NAME)->toString()),
+            address: $this->string(self::ADDRESS)->toString(),
+        );
+    }
+}
