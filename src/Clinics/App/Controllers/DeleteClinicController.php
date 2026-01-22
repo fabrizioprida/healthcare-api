@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Lightit\Clinics\App\Controllers;
 
 use Dedoc\Scramble\Attributes\Group;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Lightit\Clinics\Domain\Models\Clinic;
 
 #[Group('Clinics')]
 final readonly class DeleteClinicController
 {
-    public function __invoke(Clinic $clinic): JsonResponse
+    public function __invoke(Clinic $clinic): Response
     {
         $clinic->delete();
 
-        return response()->json(status: JsonResponse::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }

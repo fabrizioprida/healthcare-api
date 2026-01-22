@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Route;
-use Lightit\Clinics\App\Controllers\DeleteClinicController;
-use Lightit\Clinics\App\Controllers\GetClinicController;
-use Lightit\Clinics\App\Controllers\ListClinicController;
-use Lightit\Clinics\App\Controllers\StoreClinicController;
-use Lightit\Clinics\App\Controllers\UpdateClinicController;
+use Lightit\Clinics\App\Controllers\{DeleteClinicController, GetClinicController, ListClinicController, StoreClinicController, UpdateClinicController};
 use Lightit\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, StoreUserController, UpdateUserController};
 
 /*
@@ -55,7 +51,7 @@ Route::prefix('clinics')
         Route::get('/', ListClinicController::class);
         Route::post('/', StoreClinicController::class);
         Route::prefix('{clinic}')->group(static function (): void {
-            Route::get('/', GetClinicController::class)->withTrashed();
+            Route::get('/', GetClinicController::class);
             Route::put('/', UpdateClinicController::class);
             Route::delete('/', DeleteClinicController::class);
         })->whereNumber('clinic');

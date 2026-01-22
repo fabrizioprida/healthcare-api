@@ -21,15 +21,13 @@ class UpdateClinicRequest extends FormRequest
      */
     public function rules(): array
     {
-        $clinicId = $this->route('clinic');
-
         return [
             self::NAME => [
                 'required',
                 'string',
                 'min:4',
                 'max:80',
-                Rule::unique(Clinic::class, 'name')->ignore($clinicId),
+                Rule::unique(Clinic::class, 'name')->ignore($this->clinic),
             ],
             self::ADDRESS => ['required', 'string', 'min:4', 'max:255'],
         ];
