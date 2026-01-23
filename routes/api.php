@@ -25,11 +25,6 @@ Route::middleware('auth:sanctum')
         'data' => $user,
     ]));
 
-/*
-|--------------------------------------------------------------------------
-| Users Routes
-|--------------------------------------------------------------------------
-*/
 Route::prefix('users')
     ->group(static function (): void {
         Route::get('/', ListUserController::class);
@@ -41,11 +36,6 @@ Route::prefix('users')
         })->whereNumber('user');
     });
 
-/*
-|--------------------------------------------------------------------------
-| Clinics Routes
-|--------------------------------------------------------------------------
-*/
 Route::prefix('clinics')
     ->group(static function (): void {
         Route::get('/', ListClinicController::class);
