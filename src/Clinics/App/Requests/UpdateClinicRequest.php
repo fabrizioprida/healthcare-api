@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lightit\Clinics\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Lightit\Clinics\Domain\DataTransferObjects\ClinicDto;
 use Lightit\Clinics\Domain\Models\Clinic;
