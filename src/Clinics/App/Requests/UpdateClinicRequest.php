@@ -36,7 +36,7 @@ class UpdateClinicRequest extends FormRequest
     public function toDto(): ClinicDto
     {
         return new ClinicDto(
-            name: Str::title($this->string(self::NAME)->toString()),
+            name: $this->string(self::NAME)->toString(),
             address: $this->string(self::ADDRESS)->toString(),
         );
     }
